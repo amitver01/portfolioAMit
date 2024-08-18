@@ -75,7 +75,7 @@ function NavBar() {
             padding="py-2 px-4 md:py-3 md:px-6"
             borderRadius="rounded-lg"
             borderColor="border-white-200"
-            link="https://drive.google.com/file/d/1-jLfzWucDbPt4oi1Smk5VyxqXsj6kjxp/view?usp=drivesdk"
+            link="https://drive.google.com/file/d/1-w9CX5DrpIqfBUhALiYQrhhl8KQeakfi/view"
           />
         </div>
       </div>
