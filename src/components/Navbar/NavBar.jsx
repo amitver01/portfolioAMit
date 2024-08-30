@@ -35,7 +35,7 @@ function NavBar() {
           padding="py-2 px-4 md:py-3 md:px-6"
           borderRadius="rounded-lg"
           borderColor="border-white-200"
-          link="https://drive.google.com/file/d/1-jLfzWucDbPt4oi1Smk5VyxqXsj6kjxp/view?usp=drivesdk"
+          link="https://drive.google.com/file/d/1oL7MGvB8GBWFiDtMkngT1bMn-EG7E-mr/view?usp=sharing"
         />
         <div className="flex flex-col md:flex-row items-center md:gap-8">
           {["Project", "About", "Contact"].map((item, index) => (
@@ -67,16 +67,7 @@ function NavBar() {
               {item}
             </a>
           ))}
-          <Button  
-            text="My Resume"
-            bgColor="bg-zinc-900"
-            hoverColor="hover:bg-custom-blue-hover"
-            textColor="text-white"
-            padding="py-2 px-4 md:py-3 md:px-6"
-            borderRadius="rounded-lg"
-            borderColor="border-white-200"
-            link="https://drive.google.com/file/d/1-w9CX5DrpIqfBUhALiYQrhhl8KQeakfi/view"
-          />
+       
         </div>
       </div>
     </div>
