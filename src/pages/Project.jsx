@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '../components/Card';
-import tictactoe from "../assets/tictactoe.jpg";
-import sign from "../assets/sign.jpg";
-import ecommerce from "../assets/ecommerce.png"
+import va from "../assets/va.jpg";
+import donation from "../assets/donation.jpg";
+import event from "../assets/event.jpg"
 const Project = () => {
   return (
     <div id="project" className="w-full min-h-screen bg-zinc-900 py-10">
@@ -12,24 +12,24 @@ const Project = () => {
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
           <Card  
-            imageSrc={tictactoe}
-            title="React TIC-TAC-TOE"
-            description="A React Tic Tac Toe game with a 3x3 grid where two players compete. The app tracks moves, checks for winners, and highlights the winning combination."
-            githubLink="https://github.com/amitver01/TicTacToe"
+            imageSrc={va}
+            title="Voting Application"
+            description="A secure voting platform integrating advanced authentication methods like Aadhaar card-based verification to ensure transparency and trust in digital elections."
+            githubLink="https://github.com/amitver01/Vote_Hub"
             liveLink="https://amittictactoe.netlify.app/"
           />
           <Card 
-            imageSrc={sign}
-            title="React Signature"
-            description="A digital signature application developed with React. Users can draw and save signatures, which are ideal for electronic documents."
-            githubLink="https://github.com/amitver01/signature_react"
+            imageSrc={donation}
+            title="Danmitra - Donation Platform"
+            description="A niche-focused donation app that bridges donors and beneficiaries, featuring intuitive design, secure payment gateways, and multilingual support."
+            githubLink="https://github.com/amitver01/DANMITRA"
             liveLink="https://signaturedigi.netlify.app/"
           />
           <Card 
-            imageSrc={ecommerce}
-            title="Ecommerce Website"
-            description="A MERN e-commerce website leverages MongoDB, Express.js, React, and Node.js to deliver a dynamic, scalable platform that handles product listings, user authentication, and payment processing."
-             githubLink="https://github.com/amitver01/e-commerce"
+            imageSrc={event}
+            title="Event Management System"
+            description="A streamlined event management platform enabling users to create, manage, and promote events effortlessly with robust backend and responsive design."
+             githubLink="https://github.com/amitver01/backend_EVENT"
             
           />
          
