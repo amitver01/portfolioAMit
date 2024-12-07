@@ -35,7 +35,7 @@ function NavBar() {
           padding="py-2 px-4 md:py-3 md:px-6"
           borderRadius="rounded-lg"
           borderColor="border-white-200"
-          link="https://drive.google.com/file/d/1oL7MGvB8GBWFiDtMkngT1bMn-EG7E-mr/view?usp=sharing"
+          link="https://drive.google.com/file/d/1A4W4UsbD8JHjO1iVX_mGWEDbw-E3AhjB/view?usp=sharing"
         />
         <div className="flex flex-col md:flex-row items-center md:gap-8">
           {["Project", "About", "Contact"].map((item, index) => (
