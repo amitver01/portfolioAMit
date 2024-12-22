@@ -1,8 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../components/Navbar/NavBar';
 import ButtonRounded from '../components/Button';
-import Marque from "../components/marque"
+import Marque from "../components/marque";
+import axios from 'axios';
+
 const About = () => {
+  const [githubData, setGithubData] = useState({
+    profileName: '',
+    totalCommits: 0,
+  });
+  const [error, setError] = useState(null);
+
+  const token = import.meta.env.VITE_GITHUB_ACCESS_TOKEN;; // Replace with your GitHub personal access token
+  const username = 'amitver01'; // Replace with the GitHub username you want to track
+
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      try {
+        // Fetch GitHub profile name
+        const profileResponse = await axios.get(`https://api.github.com/users/${username}`, {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        });
+
+        const profileName = profileResponse.data.name || username;
+
+        // Fetch GitHub repositories
+        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`, {
+          headers: {
+            Authorization: `token ${token}`,
+          },
+        });
+
+        const repos = reposResponse.data;
+        let totalCommits = 0;
+
+        // Fetch commits for each repository
+        for (const repo of repos) {
+          const commitsResponse = await axios.get(
+            `https://api.github.com/repos/${username}/${repo.name}/commits`,
+            {
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          );
+
+          totalCommits += commitsResponse.data.length;
+          console.log(totalCommits);
+        }
+
+        setGithubData({ profileName, totalCommits });
+      } catch (err) {
+        setError('Failed to fetch GitHub data');
+        console.error(err);
+      }
+    };
+
+    fetchGitHubData();
+  }, []);
+
   return (
     <div id="about" className="w-full h-screen bg-zinc-900 pt-4 md:pt-8">
       <div className="container mx-auto px-4 md:px-8 lg:px-16">
@@ -28,17 +86,20 @@ const About = () => {
           </div>
           <div className="md:w-1/3">
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-white">Use at Work</h3>
-              <div className="flex flex-wrap gap-2">
-                {['JavaScript', 'HTML', 'CSS', 'React', 'Redux', 'NodeJS', 'Express', 'JAVA' , 'Tailwind CSS' ,'MongoDB', 'GitHub', 'AWS'].map(skill => (
-                  <span className="bg-gray-700 text-white px-3 py-1 rounded-lg text-sm" key={skill}>{skill}</span>
-                ))}
-              </div>
+              <h3 className="text-2xl font-semibold text-white">GitHub Data</h3>
+              {error ? (
+                <p className="text-red-500">{error}</p>
+              ) : (
+                <div>
+                  <p className="text-white text-lg">Profile Name: {githubData.profileName}</p>
+                  <p className="text-white text-lg">Total Commits: {githubData.totalCommits}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <Marque/>
+      <Marque />
     </div>
   );
 };
