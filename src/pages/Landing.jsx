@@ -32,7 +32,7 @@ function Landing() {
             padding="py-2 px-4 md:py-3 md:px-6"
             borderRadius="rounded-lg"
             borderColor="border-white-200"
-            link="https://drive.google.com/file/d/1oL7MGvB8GBWFiDtMkngT1bMn-EG7E-mr/view?usp=sharingn"
+            link="https://drive.google.com/file/d/19EliJkypuaE26_zHGBFqVJH_jfVuBePR/view?usp=sharing"
           />
         </div>
       </div>
