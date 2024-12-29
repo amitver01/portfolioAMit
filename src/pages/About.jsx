@@ -21,30 +21,37 @@ const About = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        if (!token) throw new Error('GitHub token is missing.');
-
+        // Fetch GitHub profile name
         const profileResponse = await axios.get(`https://api.github.com/users/${username}`, {
           headers: { Authorization: `token ${token}` },
         });
-
+  
         const profileName = profileResponse.data.name || username;
-
-        const reposResponse = await axios.get( `https://api.github.com/users/${username}/repos?per_page=10`, {
+  
+        // Fetch GitHub repositories
+        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`, {
           headers: { Authorization: `token ${token}` },
         });
-
+  
         const repos = reposResponse.data;
+  
+        // Prepare promises for fetching commits for each repository
         const commitsPromises = repos.map((repo) =>
-          axios.get(`https://api.github.com/repos/${username}/${repo.name}/commits`, {
+          axios.get(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100`, {
             headers: { Authorization: `token ${token}` },
           })
         );
-
+  
+        // Resolve all promises
         const commitsResponses = await Promise.all(commitsPromises);
+  
+        // Calculate total commits
         const totalCommits = commitsResponses.reduce((sum, response) => sum + response.data.length, 0);
-
+  
+        // Update state
         setGithubData({ profileName, totalCommits });
-
+  
+        // Display commit count dynamically
         let count = 0;
         const interval = setInterval(() => {
           count += Math.floor(totalCommits / 50);
@@ -55,9 +62,9 @@ const About = () => {
             setDisplayedCommits(count);
           }
         }, 50);
-      } catch (error) {
+      } catch (err) {
         setErrorGitHub('Failed to fetch GitHub data');
-        console.error(error);
+        console.error(err);
       }
     };
 
