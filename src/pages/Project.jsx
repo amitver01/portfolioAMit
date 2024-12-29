@@ -27,7 +27,7 @@ const Project = () => {
           />
           <Card 
             imageSrc={event}
-            title="Event Management System"
+            title="Event-Management System"
             description="A streamlined event management platform enabling users to create, manage, and promote events effortlessly with robust backend and responsive design."
              githubLink="https://github.com/amitver01/backend_EVENT"
             
