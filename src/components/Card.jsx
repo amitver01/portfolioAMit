@@ -3,19 +3,19 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const CardDefault = ({ imageSrc, title, description, githubLink, liveLink }) => {
   return (
-    <div className="w-full max-w-xs mx-auto rounded-lg shadow-lg overflow-hidden bg-zinc-700 transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+    <div className="w-full max-w-xs mx-auto rounded-lg shadow-lg overflow-hidden bg-zinc-700 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
       <div className="relative h-48 md:h-56">
         <img
           src={imageSrc}
           alt="card-image"
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full transition-all duration-500 ease-in-out transform group-hover:scale-110"
         />
       </div>
-      <div className="p-4">
-        <h5 className="text-lg md:text-xl font-bold text-blue-gray-100 mb-2">
+      <div className="p-4 group">
+        <h5 className="text-lg md:text-xl font-bold text-blue-gray-100 mb-2 transition-all duration-300 ease-in-out group-hover:text-blue-400">
           {title}
         </h5>
-        <p className="text-blue-gray-300 text-sm md:text-base">
+        <p className="text-blue-gray-300 text-sm md:text-base mb-4 transition-all duration-300 ease-in-out group-hover:text-blue-200">
           {description}
         </p>
       </div>
@@ -25,7 +25,7 @@ const CardDefault = ({ imageSrc, title, description, githubLink, liveLink }) => 
             href={githubLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-gray-300"
+            className="text-white hover:text-gray-300 transform transition-all duration-300 ease-in-out group-hover:text-blue-400"
           >
             <FaGithub size={20} />
           </a>
@@ -35,7 +35,7 @@ const CardDefault = ({ imageSrc, title, description, githubLink, liveLink }) => 
             href={liveLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-gray-300"
+            className="text-white hover:text-gray-300 transform transition-all duration-300 ease-in-out group-hover:text-blue-400"
           >
             <FaExternalLinkAlt size={20} />
           </a>

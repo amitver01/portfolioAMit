@@ -2,7 +2,8 @@ import React from 'react';
 import Card from '../components/Card';
 import va from "../assets/va.jpg";
 import donation from "../assets/donation.jpg";
-import event from "../assets/event.jpg"
+import event from "../assets/event.jpg";
+
 const Project = () => {
   return (
     <div id="project" className="w-full min-h-screen bg-zinc-900 py-10">
@@ -16,7 +17,6 @@ const Project = () => {
             title="Voting Application"
             description="A secure voting platform integrating advanced authentication methods like Aadhaar card-based verification to ensure transparency and trust in digital elections."
             githubLink="https://github.com/amitver01/Vote_Hub"
-            liveLink="#"
           />
           <Card 
             imageSrc={donation}
@@ -29,10 +29,8 @@ const Project = () => {
             imageSrc={event}
             title="Event-Management System"
             description="A streamlined event management platform enabling users to create, manage, and promote events effortlessly with robust backend and responsive design."
-             githubLink="https://github.com/amitver01/backend_EVENT"
-            
+            githubLink="https://github.com/amitver01/backend_EVENT"
           />
-         
         </div>
       </div>
     </div>
