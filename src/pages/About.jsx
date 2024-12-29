@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../components/Navbar/NavBar';
-import ButtonRounded from '../components/Button';
-import Marque from "../components/marque";
+import Marque from '../components/marque';
 import axios from 'axios';
 
 const About = () => {
@@ -9,51 +7,44 @@ const About = () => {
     profileName: '',
     totalCommits: 0,
   });
+  const [leetcodeData, setLeetcodeData] = useState({
+    rating: null,
+    solved: 0,
+  });
   const [displayedCommits, setDisplayedCommits] = useState(0);
-  const [error, setError] = useState(null);
+  const [errorGitHub, setErrorGitHub] = useState(null);
+  const [errorLeetCode, setErrorLeetCode] = useState(null);
 
-  const token = import.meta.env.VITE_GITHUB_ACCESS_TOKEN; // GitHub personal access token
+  const token = import.meta.env.VITE_GITHUB_ACCESS_TOKEN || '';
   const username = 'amitver01'; // GitHub username to track
 
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        // Fetch GitHub profile name
+        if (!token) throw new Error('GitHub token is missing.');
+
         const profileResponse = await axios.get(`https://api.github.com/users/${username}`, {
-          headers: {
-            Authorization: `token ${token}`,
-          },
+          headers: { Authorization: `token ${token}` },
         });
 
         const profileName = profileResponse.data.name || username;
 
-        // Fetch GitHub repositories
-        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`, {
-          headers: {
-            Authorization: `token ${token}`,
-          },
+        const reposResponse = await axios.get( `https://api.github.com/users/${username}/repos?per_page=10`, {
+          headers: { Authorization: `token ${token}` },
         });
 
         const repos = reposResponse.data;
-        let totalCommits = 0;
+        const commitsPromises = repos.map((repo) =>
+          axios.get(`https://api.github.com/repos/${username}/${repo.name}/commits`, {
+            headers: { Authorization: `token ${token}` },
+          })
+        );
 
-        // Fetch commits for each repository
-        for (const repo of repos) {
-          const commitsResponse = await axios.get(
-            `https://api.github.com/repos/${username}/${repo.name}/commits`,
-            {
-              headers: {
-                Authorization: `token ${token}`,
-              },
-            }
-          );
-
-          totalCommits += commitsResponse.data.length;
-        }
+        const commitsResponses = await Promise.all(commitsPromises);
+        const totalCommits = commitsResponses.reduce((sum, response) => sum + response.data.length, 0);
 
         setGithubData({ profileName, totalCommits });
 
-        // Animate the shuffling effect for total commits
         let count = 0;
         const interval = setInterval(() => {
           count += Math.floor(totalCommits / 50);
@@ -64,14 +55,30 @@ const About = () => {
             setDisplayedCommits(count);
           }
         }, 50);
-      } catch (err) {
-        setError('Failed to fetch GitHub data');
-        console.error(err);
+      } catch (error) {
+        setErrorGitHub('Failed to fetch GitHub data');
+        console.error(error);
+      }
+    };
+
+    const fetchLeetCodeData = async () => {
+      try {
+        const userResponse = await axios.get('https://alfa-leetcode-api.onrender.com/userProfile/amitver6969');
+        const contestResponse = await axios.get('https://alfa-leetcode-api.onrender.com/amitver6969/contest');
+
+        setLeetcodeData({
+          rating: contestResponse.data.contestRating || 'N/A',
+          solved: userResponse.data.totalSolved || 0,
+        });
+      } catch (error) {
+        setErrorLeetCode('Failed to fetch LeetCode data');
+        console.error(error);
       }
     };
 
     fetchGitHubData();
-  }, []);
+    fetchLeetCodeData();
+  }, [username, token]);
 
   return (
     <div id="about" className="w-full min-h-screen bg-zinc-900 pt-4 md:pt-8">
@@ -93,30 +100,49 @@ const About = () => {
                 <p className="text-base md:text-lg text-gray-300">
                   I'm passively looking for positions where I can apply my love for code. If you think you've got an opening that I might like, let's connect <span role="img" aria-label="link">🔗</span>
                 </p>
+                <br></br>
               </div>
             </div>
           </div>
           <div className="md:w-1/3">
             <div className="bg-gray-800 rounded-lg p-6 shadow-md">
               <h3 className="text-2xl font-semibold text-blue-400 mb-4">GitHub Data</h3>
-              {error ? (
-                <p className="text-red-500">{error}</p>
+              {errorGitHub ? (
+                <p className="text-red-500">{errorGitHub}</p>
               ) : (
                 <div className="space-y-4">
-                 <p className="text-lg text-gray-300">
-                      <span className="font-medium text-white">Profile Name:</span>{' '}
-                      <a
-                        href={`https://github.com/${username}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-400 hover:underline"
-                      >
-                        {username}
-                      </a>
-                    </p>
+                  <p className="text-lg text-gray-300">
+                    <span className="font-medium text-white">Profile Name:</span>{' '}
+                    <a
+                      href={`https://github.com/${username}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:underline"
+                    >
+                      {githubData.profileName}
+                    </a>
+                  </p>
                   <p className="text-lg text-gray-300">
                     <span className="font-medium text-white">Total Commits:</span>{' '}
                     <span className="text-green-400 font-bold text-2xl">{displayedCommits}</span>
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="bg-gray-800 rounded-lg p-6 mt-8 shadow-md">
+              <h3 className="text-2xl font-semibold text-blue-400 mb-4">LeetCode Stats</h3>
+              {errorLeetCode ? (
+                <p className="text-red-500">{errorLeetCode}</p>
+              ) : (
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-300">
+                    <span className="font-medium text-white">Rating:</span>{' '}
+                    <span className="text-yellow-400 font-bold text-2xl">{leetcodeData.rating}</span>
+                  </p>
+                  <p className="text-lg text-gray-300">
+                    <span className="font-medium text-white">Solved Problems:</span>{' '}
+                    <span className="text-blue-400 font-bold text-2xl">{leetcodeData.solved}</span>
                   </p>
                 </div>
               )}
