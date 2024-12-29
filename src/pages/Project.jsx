@@ -16,14 +16,14 @@ const Project = () => {
             title="Voting Application"
             description="A secure voting platform integrating advanced authentication methods like Aadhaar card-based verification to ensure transparency and trust in digital elections."
             githubLink="https://github.com/amitver01/Vote_Hub"
-            liveLink="https://amittictactoe.netlify.app/"
+            liveLink="#"
           />
           <Card 
             imageSrc={donation}
             title="Danmitra - Donation Platform"
             description="A niche-focused donation app that bridges donors and beneficiaries, featuring intuitive design, secure payment gateways, and multilingual support."
             githubLink="https://github.com/amitver01/DANMITRA"
-            liveLink="https://signaturedigi.netlify.app/"
+            liveLink="https://danmitra.vercel.app/"
           />
           <Card 
             imageSrc={event}
