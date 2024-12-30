@@ -3,6 +3,7 @@ import Card from '../components/Card';
 import va from "../assets/va.jpg";
 import donation from "../assets/donation.jpg";
 import event from "../assets/event.jpg";
+import sign from "../assets/sign.jpg"
 
 const Project = () => {
   return (
@@ -30,6 +31,13 @@ const Project = () => {
             title="Event-Management System"
             description="A streamlined event management platform enabling users to create, manage, and promote events effortlessly with robust backend and responsive design."
             githubLink="https://github.com/amitver01/backend_EVENT"
+          />
+          <Card 
+            imageSrc={sign}
+            title="Digital Signature"
+            description="Got an offer letter? Congratulation! But how would you accept it without signing? Try Digital Signature."
+            githubLink="https://github.com/amitver01/Sign_Digi"
+            liveLink="https://signaturedigi.netlify.app/"
           />
         </div>
       </div>
