@@ -23,7 +23,7 @@ const Contact = () => {
           {/* Email Section */}
           <div className="flex items-center justify-center mb-8">
             <FaEnvelope className="text-3xl text-white" />
-            <a href="mailto:av2177980@gmail.com" className="ml-2 text-white text-lg">av2177980@gmail.com</a>
+            <a href="mailto:av.amitverma2910@gmail.com" className="ml-2 text-white text-lg">av.amitverma2910@gmail.com</a>
           </div>
           
           {/* Social Media Icons */}
