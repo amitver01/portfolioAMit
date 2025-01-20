@@ -4,6 +4,7 @@ import Landing from './pages/Landing';
 import About from './pages/About';
 import Projects from './pages/Project';
 import Contact from './pages/Contact';
+import Certificate from './pages/certificate'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Landing/>
       <About/>
       <Projects/>
+      <Certificate/>
       <Contact/>
     </Router>
     </div>
