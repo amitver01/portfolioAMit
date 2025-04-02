@@ -13,7 +13,7 @@ function Landing() {
           I'm a Full Stack Developer<span className="text-blue-500">.</span>
         </h2>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed mb-8">
-          Hello, I'm Amit Verma, a Computer Science and Engineering graduate with a focus on full-stack development. I have experience working with technologies like React.js, Node.js, MongoDB, and AWS.
+          Hello, I'm, a Computer Science and Engineering graduate with a strong skill set in backend development, particularly with Node.js and Express.js. Additionally, I have a solid understanding of Java and its core concepts.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 m-4">
           <Button 

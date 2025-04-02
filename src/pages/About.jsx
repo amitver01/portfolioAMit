@@ -140,7 +140,7 @@ const About = () => {
             <div className="bg-gray-800 rounded-lg p-6 mt-8 shadow-md">
               <h3 className="text-2xl font-semibold text-blue-400 mb-4">LeetCode Stats</h3>
               {errorLeetCode ? (
-                <p className="text-red-500">{errorLeetCode}</p>
+                <p className="text-red-500">{"Too many request"}</p>
               ) : (
                 <div className="space-y-4">
                   <p className="text-lg text-gray-300">
